@@ -156,17 +156,14 @@ export function formatEvent(event: CalendarEvent): string {
  */
 export function logEvents(events: CalendarEventsResponse): void {
   if (events.events.length === 0) {
-    console.log("予定がありません。");
     Logger.log("予定がありません。");
     return;
   }
 
-  console.log(`=== ${events.events.length}件の予定 ===\n`);
   Logger.log(`=== ${events.events.length}件の予定 ===`);
 
   for (const event of events.events) {
     const formatted = formatEvent(event);
-    console.log(formatted);
     Logger.log(formatted);
   }
 }

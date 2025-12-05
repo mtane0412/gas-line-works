@@ -15,12 +15,11 @@ import { getAllUsers, logUsers } from "./user";
 
 /**
  * 動作確認用の関数
- * GASエディタから実行してconsoleに出力を表示
+ * GASエディタから実行してログに出力を表示
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function hello(): void {
-  console.log("Hello from LINE WORKS API project!");
-  Logger.log("Logger: Hello from LINE WORKS API project!");
+  Logger.log("Hello from LINE WORKS API project!");
 }
 
 /**
@@ -30,7 +29,7 @@ function hello(): void {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function fetchTodayEvents(): void {
   try {
-    console.log("認証情報を取得中...");
+    Logger.log("認証情報を取得中...");
     const config = getAuthConfigFromProperties();
 
     if (!config.targetUserId) {
@@ -39,14 +38,14 @@ function fetchTodayEvents(): void {
       );
     }
 
-    console.log("アクセストークンを取得中...");
+    Logger.log("アクセストークンを取得中...");
     const accessToken = getAccessToken(config);
-    console.log("アクセストークン取得成功");
+    Logger.log("アクセストークン取得成功");
 
     const fromDateTime = toIso8601(getTodayStart());
     const untilDateTime = toIso8601(getTodayEnd());
 
-    console.log(`予定を取得中... (${fromDateTime} 〜 ${untilDateTime})`);
+    Logger.log(`予定を取得中... (${fromDateTime} 〜 ${untilDateTime})`);
 
     const events = getCalendarEvents(accessToken, config.targetUserId, {
       fromDateTime,
@@ -56,7 +55,6 @@ function fetchTodayEvents(): void {
     logEvents(events);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.error(`エラー: ${message}`);
     Logger.log(`エラー: ${message}`);
   }
 }
@@ -89,7 +87,6 @@ function fetchEventsForPeriod(fromDate?: Date, untilDate?: Date): void {
     logEvents(events);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.error(`エラー: ${message}`);
     Logger.log(`エラー: ${message}`);
   }
 }
@@ -112,7 +109,7 @@ function fetchThisWeekEvents(): void {
   weekEnd.setDate(weekStart.getDate() + 6);
   weekEnd.setHours(23, 59, 59, 999);
 
-  console.log(`今週の予定を取得中...`);
+  Logger.log(`今週の予定を取得中...`);
   fetchEventsForPeriod(weekStart, weekEnd);
 }
 
@@ -123,20 +120,19 @@ function fetchThisWeekEvents(): void {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function fetchUserList(): void {
   try {
-    console.log("認証情報を取得中...");
+    Logger.log("認証情報を取得中...");
     const config = getAuthConfigFromProperties();
 
-    console.log("アクセストークンを取得中...");
+    Logger.log("アクセストークンを取得中...");
     const accessToken = getAccessToken(config);
-    console.log("アクセストークン取得成功");
+    Logger.log("アクセストークン取得成功");
 
-    console.log("ユーザー一覧を取得中...");
+    Logger.log("ユーザー一覧を取得中...");
     const users = getAllUsers(accessToken);
 
     logUsers(users);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.error(`エラー: ${message}`);
     Logger.log(`エラー: ${message}`);
   }
 }

@@ -104,26 +104,21 @@ export function formatUser(user: User): string {
 }
 
 /**
- * ユーザー一覧をコンソールに表示する
+ * ユーザー一覧をログに表示する
  * @param users - ユーザー配列
  */
 export function logUsers(users: User[]): void {
   if (users.length === 0) {
-    console.log("ユーザーがいません。");
     Logger.log("ユーザーがいません。");
     return;
   }
 
-  console.log(`=== ${users.length}人のユーザー ===\n`);
   Logger.log(`=== ${users.length}人のユーザー ===`);
-  console.log("userId | email | name");
   Logger.log("userId | email | name");
-  console.log("-".repeat(60));
   Logger.log("-".repeat(60));
 
   for (const user of users) {
     const formatted = formatUser(user);
-    console.log(formatted);
     Logger.log(formatted);
   }
 }
