@@ -1,0 +1,31 @@
+{
+  "name": "gas-line-works",
+  "version": "1.0.0",
+  "description": "Google Apps Script + LINE WORKS API project",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.js",
+    "push": "npm run build && clasp push --force",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "jest"
+  },
+  "keywords": ["gas", "line-works", "google-apps-script"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/google-apps-script": "^2.0.8",
+    "@types/jest": "^30.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
+    "esbuild": "^0.27.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "jest": "^30.2.0",
+    "prettier": "^3.7.4",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
+  }
+}
