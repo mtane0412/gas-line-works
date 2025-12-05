@@ -10,4 +10,21 @@ module.exports = {
   collectCoverageFrom: ["src/**/*.ts", "!src/**/*.d.ts"],
   coverageDirectory: "coverage",
   verbose: true,
+  transform: {
+    "^.+\\.ts$": [
+      "ts-jest",
+      {
+        tsconfig: {
+          target: "ES2019",
+          module: "CommonJS",
+          moduleResolution: "node",
+          lib: ["ES2019"],
+          strict: true,
+          esModuleInterop: true,
+          skipLibCheck: true,
+          types: ["google-apps-script", "jest", "node"],
+        },
+      },
+    ],
+  },
 };
